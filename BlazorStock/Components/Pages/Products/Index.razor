@@ -1,0 +1,45 @@
+@page "/products"
+@using BlazorStock.Models
+
+<h1>Products</h1>
+<a href="/products/create" class="btn btn-primary">Novo</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var p in _products)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Name</td>
+                <td>@p.Price.ToString("C")</td>
+                <td>
+                    <a href="/products/edit/@p.Id">Editar</a>
+                    <a href="/products/delete/@p.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
+
+@code {
+    private List<Product> _products = new List<Product>();
+    protected override async Task OnInitializedAsync()
+    {
+        @* _products = await _Context
+        .Products
+        .AsNoTracking()
+        .ToListAsync(); *@
+    }
+}
