@@ -1,5 +1,8 @@
 @page "/products"
+@using BlazorStock.Data
 @using BlazorStock.Models
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext _Context
 
 <h1>Produtos</h1>
 <a href="/products/create" class="btn btn-primary">Novo</a>
@@ -37,9 +40,9 @@
     private List<Product> _products = new List<Product>();
     protected override async Task OnInitializedAsync()
     {
-        @* _products = await _Context
+        _products = await _Context
         .Products
         .AsNoTracking()
-        .ToListAsync(); *@
+        .ToListAsync();
     }
 }
